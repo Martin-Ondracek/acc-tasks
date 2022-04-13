@@ -12,8 +12,8 @@ class MainPage(BasePage):
     def __init__(self):
         super().__init__()
 
-    def openPage(self):
-        self.openWeb(self.page)
-        if self.isElementDisplayed(self.cookiesConsentButton):
-            self.myClick(self.cookiesConsentButton)
-        self.myClick(self.coffeeForEspressoA)
+    def open_page(self):
+        self.open_web(self.page)
+        if self.is_element_displayed(self.cookiesConsentButton):
+            self.my_click(self.cookiesConsentButton)
+        self.my_click(self.coffeeForEspressoA)

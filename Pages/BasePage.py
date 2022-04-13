@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class BasePage:
 
     def __init__(self):
@@ -12,35 +13,32 @@ class BasePage:
     def teardown_method(self):
         self.driver.quit()
 
-    def selectFromDropdown(self, xpathDropdown, value):
-        Select(self.driver.find_element(By.XPATH, xpathDropdown)).select_by_value(value)
+    def select_from_dropdown(self, xpath_dropdown, value):
+        Select(self.driver.find_element(By.XPATH, xpath_dropdown)).select_by_value(value)
 
-    def myClick(self, xpath):
-        self.waitForElementToBeClickable(xpath, 5)
+    def my_click(self, xpath):
+        self.wait_for_element_to_be_clickable(xpath, 5)
         self.driver.find_element(By.XPATH, xpath).click()
 
-    def openWeb(self, webUrl):
-        self.driver.get(webUrl)
+    def open_web(self, web_url):
+        self.driver.get(web_url)
         self.driver.maximize_window()
 
-    def getDriver(self):
+    def get_driver(self):
         return self.driver
 
-    def waitAndFind(self, xpath):
+    def wait_and_find(self, xpath):
         WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, xpath))
         )
 
-    def waitForElementToBeClickable(self, xpath, seconds=10):
+    def wait_for_element_to_be_clickable(self, xpath, seconds=10):
         WebDriverWait(self.driver, seconds).until(
             EC.element_to_be_clickable((By.XPATH, xpath))
         )
 
-    def getText(self, xpath):
+    def get_text(self, xpath):
         return self.driver.find_element(By.XPATH, xpath).text
 
-    def isElementDisplayed(self, xpath):
+    def is_element_displayed(self, xpath):
         return self.driver.find_element(By.XPATH, xpath).is_displayed()
-
-
-

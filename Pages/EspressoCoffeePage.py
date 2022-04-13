@@ -3,7 +3,6 @@ import time
 
 
 class EspressoCoffeePage(BasePage):
-
     # XPath locators
     orderByDropdown = "//select[@name='filter_radenie_co']"
     orderByAscDescDropdown = "//select[@name='filter_radenie_ako']"
@@ -14,21 +13,22 @@ class EspressoCoffeePage(BasePage):
     finisOrder = "//div[@id='finish_order']"
 
     # Variables
-    orderByPriceValue = 'pr_price'
-    orderByDescValue = 'DESC'
+    orderByPriceValue = 'pr_price'  # Value for ordering by price
+    orderByDescValue = 'DESC'  # Value for descending order
 
     def __init__(self, driver):
         self.driver = driver
 
-    def addToCart(self):
-        self.selectFromDropdown(self.orderByDropdown, self.orderByPriceValue)
-        self.selectFromDropdown(self.orderByAscDescDropdown, self.orderByDescValue)
-        self.myClick(self.firstMostExpensive)
-        self.waitAndFind(self.finisOrder)
+    def add_to_cart(self):
+        """ Add two most expensive items from current page """
+        self.select_from_dropdown(self.orderByDropdown, self.orderByPriceValue)
+        self.select_from_dropdown(self.orderByAscDescDropdown, self.orderByDescValue)
+        self.my_click(self.firstMostExpensive)
+        self.wait_and_find(self.finisOrder)
 
         # This is ugly, but i didn't figure out how to bypass the animation
         time.sleep(0.5)
 
-        self.myClick(self.secondMostExpensive)
-        self.waitAndFind(self.cartCounterTwo)
-        assert self.getText(self.cartCounter) == "2", "there should be 2 things in the cart counter"
+        self.my_click(self.secondMostExpensive)
+        self.wait_and_find(self.cartCounterTwo)
+        assert self.get_text(self.cartCounter) == "2", "there should be 2 things in the cart counter"

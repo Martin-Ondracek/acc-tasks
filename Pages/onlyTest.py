@@ -2,15 +2,13 @@ from MainPage import MainPage
 from EspressoCoffeePage import EspressoCoffeePage
 
 
-
-
-for i in range(1):
+def first_buy_coffee_test():
     a = MainPage()
-    a.openPage()
-    b = EspressoCoffeePage(a.getDriver())
-    b.addToCart()
+    a.open_page()
+    b = EspressoCoffeePage(a.get_driver())
+    b.add_to_cart()
     b.teardown_method()
-    print(i)
 
 
-
+if __name__ == "__main__":
+    first_buy_coffee_test()
