@@ -14,5 +14,6 @@ class MainPage(BasePage):
 
     def openPage(self):
         self.openWeb(self.page)
-        self.myClick(self.cookiesConsentButton)
+        if self.isElementDisplayed(self.cookiesConsentButton):
+            self.myClick(self.cookiesConsentButton)
         self.myClick(self.coffeeForEspressoA)

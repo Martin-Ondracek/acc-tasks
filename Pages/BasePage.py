@@ -4,21 +4,20 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-
 class BasePage:
 
     def __init__(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome('C:\\Users\\marti\\Desktop\\acc\\acc-tasks\\Pages\\chromedriver.exe')
 
     def teardown_method(self):
         self.driver.quit()
 
     def selectFromDropdown(self, xpathDropdown, value):
-        Select(self.driver.find_element_by_xpath(xpathDropdown)).select_by_value(value)
+        Select(self.driver.find_element(By.XPATH, xpathDropdown)).select_by_value(value)
 
     def myClick(self, xpath):
         self.waitForElementToBeClickable(xpath, 5)
-        self.driver.find_element_by_xpath(xpath).click()
+        self.driver.find_element(By.XPATH, xpath).click()
 
     def openWeb(self, webUrl):
         self.driver.get(webUrl)
@@ -38,7 +37,10 @@ class BasePage:
         )
 
     def getText(self, xpath):
-        return self.driver.find_element_by_xpath(xpath).text
+        return self.driver.find_element(By.XPATH, xpath).text
+
+    def isElementDisplayed(self, xpath):
+        return self.driver.find_element(By.XPATH, xpath).is_displayed()
 
 
 
