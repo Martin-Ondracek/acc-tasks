@@ -16,5 +16,6 @@ class MainPage(BasePage):
         """Open coffeein.sk webpage, reject cookies and click on coffee for espresso section"""
         self.open_web(self.page)
         if self.is_element_displayed(self.cookiesConsentButton):
+            print("Cookies consent present.")
             self.my_click(self.cookiesConsentButton)
         self.my_click(self.coffeeForEspressoA)

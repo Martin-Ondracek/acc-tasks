@@ -9,7 +9,6 @@ import os
 class BasePage:
 
     def __init__(self):
-        # self.driver = webdriver.Chrome('C:\\Users\\marti\\Desktop\\acc\\acc-tasks\\Pages\\chromedriver.exe')
         self.driver = webdriver.Chrome(os.getcwd() + '\\chromedriver.exe')
 
     def teardown_method(self):
@@ -17,14 +16,17 @@ class BasePage:
 
     def select_from_dropdown(self, xpath_dropdown, value):
         Select(self.driver.find_element(By.XPATH, xpath_dropdown)).select_by_value(value)
+        print("Selected from dropdown " + xpath_dropdown + " value " + value)
 
     def my_click(self, xpath):
         self.wait_for_element_to_be_clickable(xpath, 5)
         self.driver.find_element(By.XPATH, xpath).click()
+        print("Clicked on element " + xpath)
 
     def open_web(self, web_url):
         self.driver.get(web_url)
         self.driver.maximize_window()
+        print("Opened webpage " + web_url + " and maximized window")
 
     def get_driver(self):
         return self.driver
@@ -33,6 +35,7 @@ class BasePage:
         WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, xpath))
         )
+        print("Found element " + xpath)
 
     def wait_for_element_to_be_clickable(self, xpath, seconds=10):
         WebDriverWait(self.driver, seconds).until(
