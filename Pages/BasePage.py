@@ -3,12 +3,14 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import os
 
 
 class BasePage:
 
     def __init__(self):
-        self.driver = webdriver.Chrome('C:\\Users\\marti\\Desktop\\acc\\acc-tasks\\Pages\\chromedriver.exe')
+        # self.driver = webdriver.Chrome('C:\\Users\\marti\\Desktop\\acc\\acc-tasks\\Pages\\chromedriver.exe')
+        self.driver = webdriver.Chrome(os.getcwd() + '\\chromedriver.exe')
 
     def teardown_method(self):
         self.driver.quit()
