@@ -9,10 +9,7 @@ import os
 class BasePage:
 
     def __init__(self):
-        self.driver = webdriver.Chrome(os.getcwd() + '\\chromedriver.exe')
-
-    def teardown_method(self):
-        self.driver.quit()
+        self.driver = webdriver.Chrome()
 
     def select_from_dropdown(self, xpath_dropdown, value):
         Select(self.driver.find_element(By.XPATH, xpath_dropdown)).select_by_value(value)
@@ -26,7 +23,7 @@ class BasePage:
     def open_web(self, web_url):
         self.driver.get(web_url)
         self.driver.maximize_window()
-        print("Opened webpage " + web_url + " and maximized window")
+        print("\nOpened webpage " + web_url + " and maximized window")
 
     def get_driver(self):
         return self.driver

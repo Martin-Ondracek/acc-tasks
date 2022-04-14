@@ -39,3 +39,7 @@ class EspressoCoffeePage(BasePage):
         self.my_click(self.secondMostExpensive)
         self.wait_and_find(self.cartCounterTwo)
         assert self.get_text(self.cartCounter) == "2", "there should be 2 things in the cart counter"
+
+    def click_unclickable(self):
+        """Click element which is not present"""
+        self.my_click(self.finishOrder)
