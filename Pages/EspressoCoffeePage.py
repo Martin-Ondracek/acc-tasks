@@ -20,7 +20,14 @@ class EspressoCoffeePage(BasePage):
         self.driver = driver
 
     def add_to_cart(self):
-        """ Add two most expensive items from current page """
+        """
+        Change filter to order by price,
+        then change ordering to be descending,
+        add first item to cart,
+        wait for finish order button to appear,
+        add second item to cart,
+        assert if there are 2 items in cart.
+         """
         self.select_from_dropdown(self.orderByDropdown, self.orderByPriceValue)
         self.select_from_dropdown(self.orderByAscDescDropdown, self.orderByDescValue)
         self.my_click(self.firstMostExpensive)
@@ -31,4 +38,4 @@ class EspressoCoffeePage(BasePage):
 
         self.my_click(self.secondMostExpensive)
         self.wait_and_find(self.cartCounterTwo)
-        assert self.get_text(self.cartCounter) == "2", "there should be 2 things in the cart counter"
+        assert self.get_text(self.cartCounter) == "3", "there should be 2 things in the cart counter"

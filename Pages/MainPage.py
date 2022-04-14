@@ -13,6 +13,7 @@ class MainPage(BasePage):
         super().__init__()
 
     def open_page(self):
+        """Open coffeein.sk webpage, reject cookies and click on coffee for espresso section"""
         self.open_web(self.page)
         if self.is_element_displayed(self.cookiesConsentButton):
             self.my_click(self.cookiesConsentButton)
